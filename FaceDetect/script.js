@@ -32,10 +32,11 @@ video.addEventListener('play', () => {
 
     canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
     faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
+    faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
     try{
       //send feature locations
-      // console.log(JSON.stringify(detections[0].landmarks._positions))
-      websocket.send(JSON.stringify(detections[0].landmarks._positions))
+      //console.log(JSON.stringify(detections[0].expressions))
+      websocket.send(JSON.stringify([detections[0].landmarks._positions, detections[0].expressions]))
     }
     catch(err){}  //catch when no face is detected
   }, 10)

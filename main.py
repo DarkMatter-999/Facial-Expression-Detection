@@ -5,7 +5,7 @@ import os, threading
 facedir = os.path.abspath('FaceDetect')
 
 app = Flask(__name__, template_folder=facedir)
-absposition = None
+data = None
 @app.route("/")
 def main():
 	return render_template('index.html')
@@ -20,8 +20,12 @@ def startface():
 async def echo(websocket, path):
     async for message in websocket:
         positions = await websocket.recv()
-        absposition = json.loads(positions)
-        print(absposition)
+        data = json.loads(positions)
+
+        for pos in data[0]:
+            print(pos["_x"], pos["_y"])
+
+        print(data[1])
 
 
 
