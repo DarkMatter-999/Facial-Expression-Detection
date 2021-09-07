@@ -69,9 +69,13 @@ class Player(Entity):
 
             self.rotation_y = ( ((data[0][29]["_x"] / ((data[0][1]["_x"] + data[0][15]["_x"])/2) - 1) * 200) + self.rotation_y)/2
             self.rotation_x = ( ((data[0][30]["_y"] / ((data[0][31]["_y"] + data[0][35]["_y"])/2) - 1) * -200) + self.rotation_x)/2
+            self.rotation_z = ( ((data[0][36]["_y"] - data[0][45]["_y"])/(data[0][36]["_x"] - data[0][45]["_x"])) *-20 + self.rotation_z)/2
+
+            # self.scale = ( (data[0][45]["_x"] - data[0][36]["_x"])*0.05 + self.scale_x)/2
 
         except Exception as e:
             # print(e)
+            # print("No face found")
             # self.rotation_x = (mouse.position.y * 45)
             # self.rotation_y = (mouse.position.x * -45)
 
